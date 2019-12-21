@@ -189,7 +189,7 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
-set guifont=Monospace\ 15
+set guifont=Unifont:h12
 " Be smart when using tabs ;)
 set smarttab
 
