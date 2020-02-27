@@ -432,3 +432,25 @@ set nu
 "   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "endif
 
+" Smooth scroll
+function SmoothScroll(up)
+    if a:up
+        let scrollaction="^Y"
+    else
+        let scrollaction="^E"
+    endif
+    exec "normal " . scrollaction
+    redraw
+    let counter=1
+    while counter<&scroll
+        let counter+=1
+        sleep 20m
+        redraw
+        exec "normal " . scrollaction
+    endwhile
+endfunction
+
+nnoremap <C-U> :call SmoothScroll(1)<Enter>
+nnoremap <C-D> :call SmoothScroll(0)<Enter>
+inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
+inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
