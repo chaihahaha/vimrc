@@ -50,7 +50,11 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 set csto=0
 set cscopetag
 set cst
-
+if filereadable("GTAGS")
+  cs add GTAGS
+elseif $CSCOPE_DB != ""
+  cs add $CSCOPE_DB
+endif
 " 记住上次打开的位置
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
