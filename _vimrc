@@ -34,10 +34,15 @@ set backupdir=C:\Users\hasee\vimfiles\backupdir
 set directory=C:\Users\hasee\vimfiles\swapdir
 set guifont=DejaVu_Sans_Mono_Unifont:h12
 
+" netrw
 let g:netrw_liststyle=3
-let g:netrw_browse_split=3
+let g:netrw_browse_split=4
 let g:netrw_winsize=20
 set switchbuf=useopen,usetab
+
+" folding
+set foldmethod=syntax
+
 
 set noerrorbells
 set novisualbell
