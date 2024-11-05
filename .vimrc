@@ -50,12 +50,31 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-
 set csto=0
 set cscopetag
 set cst
+
 if filereadable("GTAGS")
   cs add GTAGS
 elseif $CSCOPE_DB != ""
   cs add $CSCOPE_DB
 endif
+
 " 记住上次打开的位置
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+fu! SeeTab()
+  if !exists("g:SeeTabEnabled")
+    let g:SeeTabEnabled = 0
+  end
+  if g:SeeTabEnabled==0
+    syn match leadspace /^\s\+/ contains=syntab
+    exe "syn match syntab /\\s\\{" . &sw . "}/hs=s,he=s+1 contained"
+    hi syntab guibg=Grey
+    let g:SeeTabEnabled=1
+  else
+    syn clear leadspace
+    syn clear syntab
+    let g:SeeTabEnabled=0
+  end
+endfunc
+com! -nargs=0 Seetab :call SeeTab()
