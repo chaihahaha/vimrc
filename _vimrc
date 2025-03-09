@@ -118,7 +118,7 @@ noremap <F3> :Mlx<CR>
 
 augroup highlight_current_word
     au!
-    au CursorHold * :exec 'match StatusLineTerm /\V\<' . expand('<cword>') . '\>/'
+    au CursorHold * :exec 'match StatusLineTerm /\V\<' . escape(expand('<cword>'), '/\') . '\>/'
 augroup END
 
 set updatetime=1000
