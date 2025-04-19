@@ -126,3 +126,25 @@ augroup highlight_current_word
 augroup END
 
 set updatetime=1000
+
+fu! SeeTab()
+  if !exists("g:SeeTabEnabled")
+    let g:SeeTabEnabled = 0
+  end
+  if g:SeeTabEnabled==0
+    syn match leadspace /^\s\+/ contains=syntab
+    exe "syn match syntab /\\s\\{" . &sw . "}/hs=s,he=s+1 contained"
+    hi syntab guibg=Grey
+    let g:SeeTabEnabled=1
+  else
+    syn clear leadspace
+    syn clear syntab
+    let g:SeeTabEnabled=0
+  end
+endfunc
+com! -nargs=0 Seetab :call SeeTab()
+
+noremap <Up> gk
+noremap! <Up> <C-O>gk
+noremap <Down> gj
+noremap! <Down> <C-O>gj
