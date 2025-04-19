@@ -12,6 +12,8 @@ set tabstop=4
 set ai
 set si
 set wrap
+set fileencodings=ucs-bom,utf-8,utf-16,gb2312,gbk,big5,gb18030,latin1
+set encoding=utf8
 filetype plugin on
 filetype indent on
 set history=5000
@@ -30,6 +32,7 @@ set incsearch
 set lazyredraw
 set magic
 set showmatch
+set mouse=a
 set undofile
 set undodir=C:\Users\hasee\vimfiles\undodir
 set backupdir=C:\Users\hasee\vimfiles\backupdir
@@ -54,6 +57,7 @@ set novisualbell
 set autochdir
 colorscheme industry
 set backspace=indent,eol,start  " more powerful backspacing
+set background=dark
 
 "以下为rust-analyzer和ALE插件
 filetype plugin indent on
@@ -148,3 +152,10 @@ noremap <Up> gk
 noremap! <Up> <C-O>gk
 noremap <Down> gj
 noremap! <Down> <C-O>gj
+
+" define line highlight color
+highlight LineHighlight ctermbg=darkgray guibg=darkgray
+" highlight the current line
+nnoremap <silent> <Leader>l :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
+" clear all the highlighted lines
+nnoremap <silent> <Leader>c :call clearmatches()<CR>
