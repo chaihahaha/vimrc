@@ -138,7 +138,11 @@ fu! SeeTab()
   if g:SeeTabEnabled==0
     syn match leadspace /^\s\+/ contains=syntab
     exe "syn match syntab /\\s\\{" . &sw . "}/hs=s,he=s+1 contained"
-    hi syntab guibg=Grey
+    if has('gui_running')
+        hi syntab guibg=Grey
+    else
+        hi syntab ctermbg=Grey
+    endif
     let g:SeeTabEnabled=1
   else
     syn clear leadspace
