@@ -154,7 +154,7 @@ fu! SeeTab()
     if has('gui_running')
         hi syntab guibg=Grey
     else
-        hi syntab ctermbg=8
+        hi syntab ctermbg=Grey
     endif
     let g:SeeTabEnabled=1
   else
